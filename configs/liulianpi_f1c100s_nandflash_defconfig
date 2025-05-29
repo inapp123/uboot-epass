@@ -11,9 +11,10 @@ CONFIG_VIDEO_LCD_MODE="x:480,y:272,depth:18,pclk_khz:10000,le:42,ri:8,up:11,lo:4
 CONFIG_SPL_SPI_SUNXI=y
 CONFIG_SPL_SPI_NAND_SUNXI=y
 CONFIG_STACK_SIZE=0x500000
+CONFIG_BOOTDELAY=1
 CONFIG_USE_BOOTARGS=y
-CONFIG_BOOTARGS="console=ttyS0,115200 panic=5 rootwait mtdparts=spi0.0:1M(uboot)ro,64k(dtb)ro,4M(kernel)ro,-(rootfs) root=/dev/mtdblock3 earlyprintk rw rootfstype=jffs2"
-CONFIG_BOOTCOMMAND="mtd read spi-nand0 0x80C00000 0x100000 0x4000; mtd read spi-nand0 0x80008000 0x120000 0x400000; bootz 0x80008000 - 0x80C00000"
+CONFIG_BOOTARGS="console=ttyS0,115200 panic=5 rootwait mtdparts=spi0.0:1M(u-boot)ro,128K(dtb)ro,5124K(kernel)ro,-(rootfs) root=ubi0:rootfs earlyprintk rw rootfstype=ubifs ubi.mtd=3"
+CONFIG_BOOTCOMMAND="mtd read spi-nand0 0x80C00000 0x100000 0x4000; mtd read spi-nand0 0x80008000 0x120000 0x500000; bootz 0x80008000 - 0x80C00000"
 # CONFIG_CONSOLE_MUX is not set
 CONFIG_SYS_SPI_U_BOOT_OFFS=0x20000
 CONFIG_CMD_CLK=y
