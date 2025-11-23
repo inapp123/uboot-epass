@@ -55,7 +55,8 @@ struct dram_para {
 
 struct dram_para suniv_dram_para = {
 	.size = 32,
-	.clk = 156,
+	// .clk = 156,
+	.clk = CONFIG_DRAM_CLK,
 	.access_mode = 1,
 	.cs_num = 1,
 	.ddr8_remap = 0,
@@ -310,6 +311,8 @@ static u32 dram_get_dram_size(struct dram_para *para)
 		para->size = 64;
 	else
 		para->size = 32;
+
+	// para->size = 64;
 	dram_set_autofresh_cycle(para->clk);
 	para->access_mode = 0;
 	dram_para_setup(para);
